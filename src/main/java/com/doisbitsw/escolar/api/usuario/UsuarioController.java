@@ -13,11 +13,11 @@ import java.util.List;
 public class UsuarioController {
 
     @Autowired
-    private com.doisbitsw.licencas.api.usuario.UsuarioService service;
+    private com.doisbitsw.escolar.api.usuario.UsuarioService service;
 
     @GetMapping()
     public ResponseEntity get() {
-        List<com.doisbitsw.licencas.api.usuario.UsuarioDTO> usuarios = service.getUsuarios();
+        List<com.doisbitsw.escolar.api.usuario.UsuarioDTO> usuarios = service.getUsuarios();
         return ResponseEntity.ok(usuarios);
     }
     @GetMapping("/{id}")

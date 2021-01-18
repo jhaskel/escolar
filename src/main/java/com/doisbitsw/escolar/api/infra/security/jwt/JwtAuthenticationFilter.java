@@ -1,7 +1,7 @@
 package com.doisbitsw.escolar.api.infra.security.jwt;
 
-import com.doisbitsw.licencas.api.users.User;
-import com.doisbitsw.licencas.api.users.UserDTO;
+import com.doisbitsw.escolar.api.users.User;
+import com.doisbitsw.escolar.api.users.UserDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
@@ -36,7 +36,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                                 HttpServletResponse response) {
 
         try {
-            com.doisbitsw.licencas.api.infra.security.jwt.JwtLoginInput login = new ObjectMapper().readValue(request.getInputStream(), JwtLoginInput.class);
+            com.doisbitsw.escolar.api.infra.security.jwt.JwtLoginInput login = new ObjectMapper().readValue(request.getInputStream(), JwtLoginInput.class);
             String username = login.getUsername();
             String password = login.getPassword();
 
@@ -57,11 +57,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             FilterChain filterChain, Authentication authentication) throws IOException {
         User user = (User) authentication.getPrincipal();
 
-        String jwtToken = com.doisbitsw.licencas.api.infra.security.jwt.JwtUtil.createToken(user);
+        String jwtToken = com.doisbitsw.escolar.api.infra.security.jwt.JwtUtil.createToken(user);
 
 //        String json = ServletUtil.getJson("token", jwtToken);
         String json = UserDTO.create(user, jwtToken).toJson();
-        com.doisbitsw.licencas.api.infra.security.jwt.ServletUtil.write(response, HttpStatus.OK, json);
+        com.doisbitsw.escolar.api.infra.security.jwt.ServletUtil.write(response, HttpStatus.OK, json);
     }
 
     @Override

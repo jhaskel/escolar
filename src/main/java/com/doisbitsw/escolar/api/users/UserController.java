@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/v1/users")
 public class UserController {
     @Autowired
-    private com.doisbitsw.licencas.api.users.UserService service;
+    private com.doisbitsw.escolar.api.users.UserService service;
 
     @GetMapping()
     public ResponseEntity get() {
